@@ -1,14 +1,23 @@
 'use strict';
 
-console.log('App.js is running');
+var square = function square(x) {
+  return x * x;
+};
 
-// JSX - JavaScript XML
+console.log(square(3));
 
-var template = React.createElement(
-  'p',
-  null,
-  'Indecision App'
-);
-var appRoot = document.getElementById('app');
+var squareArrow = function squareArrow(x) {
+  return x * x;
+};
 
-ReactDOM.render(template, appRoot);
+console.log(squareArrow(6));
+
+// const getFirstName = (fullName) => {
+//   return fullName.split(' ')[0];
+// }
+
+var getFirstName = function getFirstName(fullName) {
+  return fullName.split(' ')[0];
+};
+
+console.log(getFirstName('Mike Smith'));
