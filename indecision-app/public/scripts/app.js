@@ -1,42 +1,96 @@
 'use strict';
 
-// arguments object - no longer bound with arrow functions
+console.log('App.js is running');
 
-var add = function add(a, b) {
-  // console.log(arguments);
-  return a + b;
+// JSX - JavaScript XML
+
+var app = {
+	title: 'Indecision Application',
+	subtitle: 'To make decisions',
+	options: ['one', 'two']
+};
+var template = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		app.title
+	),
+	app.subtitle && React.createElement(
+		'p',
+		null,
+		app.subtitle
+	),
+	app.options.length > 0 ? React.createElement(
+		'p',
+		null,
+		'Here are your options'
+	) : React.createElement(
+		'p',
+		null,
+		'No options'
+	),
+	React.createElement(
+		'ol',
+		null,
+		React.createElement(
+			'li',
+			null,
+			'Item one'
+		),
+		React.createElement(
+			'li',
+			null,
+			'Item two'
+		)
+	)
+);
+
+var count = 0;
+var addOne = function addOne() {
+	count++;
+	renderCounterApp();
+};
+var minusOne = function minusOne() {
+	count--;
+	renderCounterApp();
+};
+var reset = function reset() {
+	count = 0;
+	renderCounterApp();
 };
 
-console.log(add(55, 1, 1000));
+var appRoot = document.getElementById('app');
 
-// this keyword - no longer bound in arrow functions
+var renderCounterApp = function renderCounterApp() {
+	var templateTwo = React.createElement(
+		'div',
+		null,
+		React.createElement(
+			'h1',
+			null,
+			'Count: ',
+			count
+		),
+		React.createElement(
+			'button',
+			{ onClick: addOne },
+			'+1'
+		),
+		React.createElement(
+			'button',
+			{ onClick: minusOne },
+			'-1'
+		),
+		React.createElement(
+			'button',
+			{ onClick: reset },
+			'reset'
+		)
+	);
 
-var user = {
-  name: 'Teja',
-  cities: ['Bangalore', 'Hyd', 'Anantapur'],
-  printPlacesLived: function printPlacesLived() {
-    var _this = this;
-
-    return this.cities.map(function (city) {
-      return _this.name + ' has lived in ' + city;
-    });
-  }
+	ReactDOM.render(templateTwo, appRoot);
 };
 
-console.log(user.printPlacesLived());
-
-// challenge
-
-var multiplier = {
-  numbers: [10, 20, 30, 40, 50],
-  multiplyBy: 5,
-  multiply: function multiply() {
-    var _this2 = this;
-
-    return this.numbers.map(function (number) {
-      return number * _this2.multiplyBy;
-    });
-  }
-};
-
-console.log(multiplier.multiply());
+renderCounterApp();
