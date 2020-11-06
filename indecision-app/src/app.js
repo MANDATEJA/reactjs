@@ -1,60 +1,51 @@
-console.log('App.js is running')
-
-// JSX - JavaScript XML
-
-const app = {
-	title: 'Indecision Application',
-	subtitle: 'To make decisions',
-	options: []
-};
-
-const onFormSubmit = (e) => {
-	e.preventDefault();
-
-	const option = e.target.elements.option.value;
-	if (option) {
-		app.options.push(option);
-		e.target.elements.option.value = ''
+class Header extends React.Component {
+	render() {
+		return (
+			<div>
+				<h1>Indecision</h1>
+				<h2>Put your life in the hands of a computer</h2>
+			</div>
+		);
 	}
-	renderApp();
-};
-
-const onRemoveAll = () => {
-	app.options = [];
-	renderApp();
-};
-
-const onMakeDecision = () => {
-	const randomNum = Math.floor(Math.random() * app.options.length);
-	const option = app.options[randomNum];
-	alert(option);
 }
 
-const appRoot = document.getElementById('app');
+class Action extends React.Component {
+	render() {
+		return (
+			<div>
+				<button>What should I do?</button>
+			</div>
+		);
+	}
+}
 
-const numbers = [55, 101, 1000];
+class Options extends React.Component {
+	render() {
+		return (
+			<div>
+				<p>Options component here</p>
+			</div>
+		);
+	}
+}
 
-const renderApp = () => {
-	const template = (
-	  <div>
-	  	<h1>{app.title}</h1>
-	  	{app.subtitle && <p>{app.subtitle}</p>}
-			{app.options.length > 0 ? <p>Here are your options</p> : <p>No options</p>}
-			<button disabled={app.options.length === 0} onClick={onMakeDecision}>What sould I do?</button>
-			<button onClick={onRemoveAll}>Remove All</button>
-			<ol>
-				{
-					app.options.map((option) => <li key={option}>{option}</li>)
-				}
-			</ol>
-	  	<form onSubmit={onFormSubmit}>
-	  		<input type="text" name="option"/>
-	  		<button>Add Option</button>
-	  	</form>
-	  </div>
-	);
+class AddOption extends React.Component {
+	render() {
+		return (
+			<div>
+				<p>AddOption component here</p>
+			</div>
+		);
+	}
+}
 
-	ReactDOM.render(template, appRoot);
-};
+const jsx = (
+	<div>
+		<Header />
+		<Action />
+		<Options />
+		<AddOption />
+	</div>
+);
 
-renderApp();
+ReactDOM.render(jsx, document.getElementById('app'));
