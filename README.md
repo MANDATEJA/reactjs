@@ -3,7 +3,7 @@
 ## Component state::
 Allows our components to manage data. when data changes, component will automatially rerender to reflect those changes.
 
-###To use component state:
+### To use component state:
 
 1. We need to setup default state object.
 2. Component rendered with default state values.
