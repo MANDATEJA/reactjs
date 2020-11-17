@@ -1,5 +1,5 @@
-import { square, add } from'./utils';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log('app.js is running!');
-console.log(square(4));
-console.log(add(100, 23));
+const template = <p>This is JSX from webpack</p>;
+ReactDOM.render(template, document.getElementById('app'));
